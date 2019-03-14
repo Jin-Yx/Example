@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		<variable
+			name="viewModel"
+			type="com.lpen.jetpack.ui.viewmodel.MainViewModel"/>
+	</data>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context=".ui.fragment.MainFragment">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:background="@color/color_main"
+			android:gravity="center"
+			android:textSize="20sp"
+			android:textColor="@color/color_white"
+			android:text="JetPack"/>
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recyclerMain"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:spanCount="2"
+			app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+			tools:listitem="@layout/item_main"/>
+	
+	</LinearLayout>
+
+</layout>

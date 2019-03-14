@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="viewModel"
+			type="com.lpen.jetpack.ui.itemviewmodel.MainItemViewModel"/>
+		
+		<variable
+			name="listener"
+			type="com.lpen.jetpack.ui.listener.OnItemClickCallback"/>
+	
+	</data>
+	
+	<androidx.cardview.widget.CardView
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:gravity="center">
+		
+		<TextView
+			android:id="@+id/txtLabel"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:text="JetPack"
+			android:textSize="18sp"
+			android:paddingTop="56dp"
+			android:paddingBottom="56dp"
+			android:textColor="@color/color_white"
+			android:textStyle="bold"
+			android:onClick="@{() -> listener.onItemClick(viewModel)}"
+			tools:background="@color/color_main"
+			android:background="@{viewModel.backColor}"
+			android:text="@{viewModel.label}"
+			android:layout_gravity="center"
+			android:gravity="center"/>
+	
+	</androidx.cardview.widget.CardView>
+
+</layout>

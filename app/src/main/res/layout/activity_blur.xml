@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	
-	<android.support.v7.widget.AppCompatImageView
+	<androidx.appcompat.widget.AppCompatImageView
 		android:layout_width="match_parent"
 		android:layout_weight="1"
 		android:id="@+id/ivOriginal"
@@ -14,7 +14,7 @@
 		android:scaleType="centerCrop"
 		android:layout_height="0dip"/>
 	
-	<android.support.v7.widget.AppCompatImageView
+	<androidx.appcompat.widget.AppCompatImageView
 		android:layout_width="match_parent"
 		android:layout_weight="1"
 		tools:background="@color/mainColor"

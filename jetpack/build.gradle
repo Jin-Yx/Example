@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion compile_version
+    defaultConfig {
+        applicationId "com.lpen.jetpack"
+        minSdkVersion min_version
+        targetSdkVersion target_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    // LiveData + ViewModel
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02'
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui:2.0.0-rc02'
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.1.0-alpha04'
+    // Dagger2
+    implementation 'com.google.dagger:dagger:2.21'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+    // BRVAH Adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+}
