@@ -29,7 +29,7 @@ class DividerDecoration(private val hDistance: Int, private val vDistance: Int, 
                         outRect.top = vDistance
                         outRect.bottom = vDistance / 2
                     }
-                    parent.childCount - 1 -> {
+                    parent.adapter?.itemCount ?: 0 - 1 -> {
                         outRect.top = vDistance / 2
                         outRect.bottom = vDistance
                     }
@@ -44,7 +44,7 @@ class DividerDecoration(private val hDistance: Int, private val vDistance: Int, 
                         outRect.top = 0
                         outRect.bottom = vDistance / 2
                     }
-                    parent.childCount - 1 -> {
+                    parent.adapter?.itemCount ?: 0 - 1 -> {
                         outRect.top = vDistance / 2
                         outRect.bottom = 0
                     }

@@ -9,6 +9,12 @@
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
+		
+		<fragment
+			android:id="@+id/fragment_behaviorIndex"
+			android:name="com.lpen.jetpack.ui.fragment.IndexFragment"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
 	
 	</LinearLayout>
 
