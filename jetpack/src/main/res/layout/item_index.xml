@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
+		
 		<variable
 			name="viewModel"
-			type="com.lpen.jetpack.ui.itemviewmodel.IndexItemViewModel"/>
+			type="com.lpen.jetpack.ui.itemviewmodel.IndexItemViewModel" />
 	</data>
 	
 	<LinearLayout
-		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:orientation="vertical"
 		tools:background="@color/color_BC423E">
 		
-		<TextView
+		<androidx.appcompat.widget.AppCompatTextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingStart="16dp"
-			android:paddingEnd="16dp"
 			android:paddingTop="10dp"
+			android:paddingEnd="16dp"
 			android:paddingBottom="10dp"
-			android:textStyle="bold"
 			android:text="@{viewModel.title}"
-			android:textSize="18sp"
 			android:textColor="#14A2E6"
-			tools:text="JetPack"/>
+			android:textSize="18sp"
+			android:textStyle="bold"
+			tools:text="JetPack" />
 		
-		<TextView
+		<androidx.appcompat.widget.AppCompatTextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:ellipsize="marquee"
 			android:gravity="end|center_vertical"
+			android:marqueeRepeatLimit="-1"
 			android:paddingStart="48dp"
-			android:paddingEnd="16dp"
 			android:paddingTop="10dp"
+			android:paddingEnd="16dp"
 			android:paddingBottom="10dp"
 			android:singleLine="true"
-			android:ellipsize="marquee"
-			android:marqueeRepeatLimit="-1"
-			android:textStyle="italic"
 			android:text="@{viewModel.description}"
-			android:textSize="16sp"
 			android:textColor="@color/color_white"
-			tools:text="JetPack"/>
+			android:textSize="16sp"
+			android:textStyle="italic"
+			tools:text="JetPack" />
 	
 	</LinearLayout>
 

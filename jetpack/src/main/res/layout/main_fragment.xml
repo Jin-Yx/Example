@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
+		
 		<variable
 			name="viewModel"
-			type="com.lpen.jetpack.ui.viewmodel.MainViewModel"/>
+			type="com.lpen.jetpack.ui.viewmodel.MainViewModel" />
 	</data>
 	
 	<LinearLayout
@@ -18,20 +18,20 @@
 		
 		<TextView
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
+			android:layout_height="?attr/actionBarSize"
 			android:background="@color/color_main"
 			android:gravity="center"
-			android:textSize="20sp"
+			android:text="JetPack"
 			android:textColor="@color/color_white"
-			android:text="JetPack"/>
+			android:textSize="20sp" />
 		
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/recyclerMain"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			app:spanCount="2"
 			app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-			tools:listitem="@layout/item_main"/>
+			app:spanCount="2"
+			tools:listitem="@layout/item_main" />
 	
 	</LinearLayout>
 

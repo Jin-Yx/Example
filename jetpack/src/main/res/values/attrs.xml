@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<declare-styleable name="TitleBar">
+		<attr name="titleColor" format="color" />
+		<attr name="titleSize" format="dimension" />
+		<!-- ToolBar 本身定义了一个 title 属性. -->
+		<attr name="titleDesc" format="string" />
+	</declare-styleable>
+
+</resources>

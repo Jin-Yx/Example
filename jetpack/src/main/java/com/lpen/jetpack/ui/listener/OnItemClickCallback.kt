@@ -6,6 +6,6 @@ package com.lpen.jetpack.ui.listener
  */
 interface OnItemClickCallback<T> {
 
-    fun onItemClick(model: T)
+    fun onItemClick(t: T)
 
 }

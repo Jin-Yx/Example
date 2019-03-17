@@ -22,7 +22,6 @@ import com.lpen.jetpack.ui.itemviewmodel.MainItemViewModel
 import com.lpen.jetpack.ui.listener.OnItemClickCallback
 import com.lpen.jetpack.ui.viewmodel.MainViewModel
 import com.lpen.jetpack.utils.FastClickUtil
-import com.lpen.jetpack.utils.TipsUtil
 import kotlinx.android.synthetic.main.main_fragment.*
 
 /**
@@ -60,10 +59,9 @@ class MainFragment : Fragment() {
             val height = recyclerMain.measuredHeight
             mAdapter = MainAdapter(height - 48)
             mAdapter.addOnItemClickListener(object : OnItemClickCallback<MainItemViewModel> {
-                override fun onItemClick(model: MainItemViewModel) {
+                override fun onItemClick(t: MainItemViewModel) {
                     if (FastClickUtil.isFastClick()) return
-                    TipsUtil.toastShortMsg(activity!!, model.label.get())
-                    val index = list.indexOf(model.label.get())
+                    val index = list.indexOf(t.label.get())
                     when(index) {
                         0 -> { startActivity(Intent(activity, BasicActivity::class.java)) }
                         1 -> { startActivity(Intent(activity, ArchitectureActivity::class.java)) }

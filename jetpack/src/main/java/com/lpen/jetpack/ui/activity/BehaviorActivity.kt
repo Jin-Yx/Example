@@ -7,6 +7,8 @@ import com.lpen.jetpack.R
 import com.lpen.jetpack.databinding.ActivityBehaviorBinding
 import com.lpen.jetpack.ui.fragment.IndexFragment
 import com.lpen.jetpack.ui.itemviewmodel.IndexItemViewModel
+import com.lpen.jetpack.ui.listener.OnItemClickCallback
+import com.lpen.jetpack.utils.TipsUtil
 
 /**
  * @author LPen
@@ -18,8 +20,6 @@ class BehaviorActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityBehaviorBinding>(this, R.layout.activity_behavior)
 
-        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_behaviorIndex) as IndexFragment
-
         val list = ArrayList<IndexItemViewModel>()
         list.add(IndexItemViewModel("下载管理器", "安排和管理大量下载任务"))
         list.add(IndexItemViewModel("媒体和播放", "用于媒体播放和路由的向后兼容 API（包括 Google Cast）"))
@@ -29,7 +29,14 @@ class BehaviorActivity: AppCompatActivity() {
         list.add(IndexItemViewModel("共享", "提供适合应用操作栏的共享操作"))
         list.add(IndexItemViewModel("切片", "创建可在应用外部显示应用数据的灵活界面元素"))
 
-        fragment.setIndexList(list)
+        (supportFragmentManager.findFragmentById(R.id.fragment_archIndex) as IndexFragment).apply {
+            setIndexList(list)
+            addOnItemClickListener(object : OnItemClickCallback<Int> {
+                override fun onItemClick(t: Int) {
+                    TipsUtil.toastShortMsg(this@BehaviorActivity, list[t].title.get())
+                }
+            })
+        }
     }
 
 }
