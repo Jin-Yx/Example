@@ -14,7 +14,7 @@ import com.lpen.jetpack.R
 
 
 /**
- * @author pen
+ * @author LPen
  * @date 19-3-16
  */
 class TitleBar(context: Context, attrs: AttributeSet?) : Toolbar(context, attrs) {

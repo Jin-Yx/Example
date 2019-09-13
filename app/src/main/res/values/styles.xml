@@ -8,5 +8,10 @@
 		<item name="colorAccent">@color/mainColor</item>
 		<item name="android:windowBackground">@color/white</item>
 	</style>
-
+	
+	<style name="FullScreenTheme" parent="AppTheme">
+		<item name="android:windowTranslucentStatus">true</item>
+		<item name="android:windowFullscreen">true</item>
+	</style>
+	
 </resources>

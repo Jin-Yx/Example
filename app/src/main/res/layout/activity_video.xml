@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/black">
+	
+	<com.lpen.vplayer.IjkVideoView
+		android:id="@+id/player"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_gravity="center" />
+	
+	<ProgressBar
+		android:id="@+id/loading"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:indeterminateDrawable="@drawable/rotate_video_loading" />
+	
+	<TextView
+		android:id="@+id/txtTitle"
+		android:layout_width="match_parent"
+		android:layout_height="42dp"
+		android:text="获奖讽刺短片：「识时下车」"
+		android:textSize="16sp"
+		android:textColor="@color/white"
+		android:gravity="center_vertical"
+		android:paddingStart="16dp"
+		android:paddingEnd="16dp" />
+
+</FrameLayout>

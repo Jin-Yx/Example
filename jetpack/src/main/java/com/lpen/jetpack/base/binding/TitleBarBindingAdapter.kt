@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import com.lpen.jetpack.widget.TitleBar
 
 /**
- * @author pen
+ * @author LPen
  * @date 19-3-16
  */
 object TitleBarBindingAdapter {

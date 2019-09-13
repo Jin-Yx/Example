@@ -3,9 +3,9 @@
 buildscript {
     ext.compile_version = 28    // androidX 需要编译版本28以上
     ext.target_version = 26
-    ext.min_version = 19
+    ext.min_version = 21
     ext.gradle_version = '3.2.1'
-    ext.kotlin_version = '1.3.21'
+    ext.kotlin_version = '1.3.41'
     ext.kapt_version = '3.2.1'
     ext.application_id = "com.lpen"
 
@@ -15,7 +15,7 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.android.tools.build:gradle:${gradle_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong

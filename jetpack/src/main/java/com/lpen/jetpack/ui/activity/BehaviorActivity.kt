@@ -29,7 +29,7 @@ class BehaviorActivity: AppCompatActivity() {
         list.add(IndexItemViewModel("共享", "提供适合应用操作栏的共享操作"))
         list.add(IndexItemViewModel("切片", "创建可在应用外部显示应用数据的灵活界面元素"))
 
-        (supportFragmentManager.findFragmentById(R.id.fragment_archIndex) as IndexFragment).apply {
+        (supportFragmentManager.findFragmentById(R.id.fragment_behaviorIndex) as IndexFragment).apply {
             setIndexList(list)
             addOnItemClickListener(object : OnItemClickCallback<Int> {
                 override fun onItemClick(t: Int) {

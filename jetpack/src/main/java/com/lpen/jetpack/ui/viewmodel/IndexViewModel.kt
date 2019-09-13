@@ -4,7 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 
 /**
- * @author pen
+ * @author LPen
  * @date 19-3-16
  */
 class IndexViewModel: ViewModel() {

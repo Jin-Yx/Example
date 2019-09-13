@@ -30,7 +30,7 @@ class UIActivity: AppCompatActivity() {
         list.add(IndexItemViewModel("TV", "有助于开发 Android TV 应用的组件"))
         list.add(IndexItemViewModel("Wear OS by Google", "有助于开发 Wear 应用的组件"))
 
-        (supportFragmentManager.findFragmentById(R.id.fragment_archIndex) as IndexFragment).apply {
+        (supportFragmentManager.findFragmentById(R.id.fragment_uiIndex) as IndexFragment).apply {
             setIndexList(list)
             addOnItemClickListener(object : OnItemClickCallback<Int> {
                 override fun onItemClick(t: Int) {

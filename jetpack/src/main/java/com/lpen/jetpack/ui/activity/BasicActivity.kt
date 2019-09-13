@@ -26,7 +26,7 @@ class BasicActivity: AppCompatActivity() {
         list.add(IndexItemViewModel("多 dex 处理", "为具有多个 DEX 文件的应用提供支持"))
         list.add(IndexItemViewModel("测试", "用于单元和运行时界面测试的 Android 测试框架"))
 
-        (supportFragmentManager.findFragmentById(R.id.fragment_archIndex) as IndexFragment).apply {
+        (supportFragmentManager.findFragmentById(R.id.fragment_basicIndex) as IndexFragment).apply {
             setIndexList(list)
             addOnItemClickListener(object : OnItemClickCallback<Int> {
                 override fun onItemClick(t: Int) {

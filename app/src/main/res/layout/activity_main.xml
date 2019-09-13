@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:gravity="center"
+	android:orientation="vertical"
+	android:paddingStart="24dp"
+	android:paddingEnd="24dp"
 	tools:context=".ui.activity.MainActivity">
 	
 	<androidx.appcompat.widget.AppCompatTextView
-		android:id="@+id/tvBtn"
-		android:layout_width="wrap_content"
+		android:id="@+id/txtGaussianBlur"
+		android:layout_width="match_parent"
 		android:layout_gravity="center"
 		android:layout_height="wrap_content"
 		android:textSize="18sp"
 		android:textColor="@color/white"
 		android:background="@color/mainColor"
-		android:onClick="onBtnClick"
+		android:onClick="onGaussianBlurClick"
 		android:paddingStart="20dp"
 		android:paddingEnd="20dp"
 		android:paddingTop="8dp"
 		android:paddingBottom="8dp"
-		tools:text="Hello World!"/>
+		android:gravity="center"
+		android:text="高斯模糊" />
+	
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/txtIJKPlayer"
+		android:layout_width="match_parent"
+		android:layout_gravity="center"
+		android:layout_height="wrap_content"
+		android:textSize="18sp"
+		android:textColor="@color/white"
+		android:background="@color/mainColor"
+		android:onClick="onIJKPlayerClick"
+		android:paddingStart="20dp"
+		android:paddingEnd="20dp"
+		android:paddingTop="8dp"
+		android:paddingBottom="8dp"
+		android:gravity="center"
+		android:layout_marginTop="24dp"
+		android:text="IJKPlayer" />
 
 </LinearLayout>

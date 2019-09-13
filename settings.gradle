@@ -1,1 +1,1 @@
-include ':app', ':jetpack'
+include ':app', ':jetpack', ':vplayer'
