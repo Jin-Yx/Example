@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Example</string>
+	<string name="limit_number_and_point">0123456789.</string>
 </resources>

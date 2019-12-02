@@ -20,4 +20,8 @@ class MainActivity : AppCompatActivity() {
     fun onIJKPlayerClick(view: View) {
         startActivity(Intent(this, VideoActivity::class.java))
     }
+
+    fun onMqttClick(view: View) {
+        startActivity(Intent(this, MqttActivity::class.java))
+    }
 }

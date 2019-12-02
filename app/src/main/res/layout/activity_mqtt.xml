@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.activity.MqttActivity">
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:background="@color/mainColor"
+		android:layout_height="48dp">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="MQTT"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:gravity="center" />
+	
+	</RelativeLayout>
+	
+	<androidx.core.widget.NestedScrollView
+		android:background="#654321"
+		android:layout_width="match_parent"
+		android:fillViewport="true"
+		android:scrollbars="none"
+		android:overScrollMode="never"
+		android:layout_height="match_parent">
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:padding="20dp"
+			android:layout_height="wrap_content">
+			
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="协议："
+				android:textStyle="bold"
+				android:textColor="@color/white"
+				android:textSize="15sp" />
+			
+			<RadioGroup
+				android:id="@+id/rgpProtocol"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:orientation="horizontal">
+				
+				<RadioButton
+					android:id="@+id/rbtTCP"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:drawableStart="@drawable/selector_radio_icon_white_or_main"
+					android:button="@null"
+					android:drawablePadding="8dp"
+					android:textSize="15sp"
+					android:textStyle="bold"
+					android:textColor="@color/selector_radio_button_white_or_main"
+					android:text="tcp" />
+				
+				<RadioButton
+					android:id="@+id/rbtWS"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:drawableStart="@drawable/selector_radio_icon_white_or_main"
+					android:button="@null"
+					android:drawablePadding="8dp"
+					android:textSize="15sp"
+					android:checked="true"
+					android:textStyle="bold"
+					android:layout_marginStart="48dp"
+					android:textColor="@color/selector_radio_button_white_or_main"
+					android:text="ws" />
+			
+			</RadioGroup>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="2">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="IP："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editIP"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:maxLines="1"
+						android:digits="@string/limit_number_and_point"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="15"
+						android:textSize="15sp"
+						android:text="47.111.7.190"
+						android:textColor="@color/white"
+						android:hint="请输入 IP 地址"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="端口："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editPort"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="number"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:text="8083"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="5"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入端口"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="用户名："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editAdmin"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="text"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="20"
+						android:text="admin"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入用户名"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="密码："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editPwd"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="text"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="20"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入密码"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="发布间隔（s）："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editPubInterval"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="number"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:text="10"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="2"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入需要发布的内容"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:orientation="vertical"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="次数："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editPubCount"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="number"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:text="1"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:maxLength="4"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="1"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+			
+			</LinearLayout>
+			
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="发布内容："
+				android:layout_marginTop="20dp"
+				android:textStyle="bold"
+				android:textColor="@color/white"
+				android:textSize="15sp" />
+			
+			<EditText
+				android:id="@+id/editPubContent"
+				android:layout_width="match_parent"
+				android:layout_height="42dp"
+				android:layout_marginTop="16dp"
+				android:inputType="text"
+				android:maxLines="1"
+				android:paddingStart="8dp"
+				android:paddingEnd="8dp"
+				android:text="020Apple"
+				android:paddingTop="0dp"
+				android:paddingBottom="0dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:maxLength="50"
+				android:textSize="15sp"
+				android:textColor="@color/white"
+				android:hint="请输入需要发布的内容"
+				android:textColorHint="@color/white"
+				android:background="@drawable/shape_round4_stroke1_white" />
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="订阅 Topic："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editSubTopic"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="text"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:text="Teacher/3611288"
+						android:maxLength="50"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入订阅的 Topic"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:layout_weight="1">
+					
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="发布 Topic："
+						android:layout_marginTop="20dp"
+						android:textStyle="bold"
+						android:textColor="@color/white"
+						android:textSize="15sp" />
+					
+					<EditText
+						android:id="@+id/editPubTopic"
+						android:layout_width="match_parent"
+						android:layout_height="42dp"
+						android:layout_marginTop="16dp"
+						android:inputType="text"
+						android:maxLines="1"
+						android:paddingStart="8dp"
+						android:paddingEnd="8dp"
+						android:paddingTop="0dp"
+						android:paddingBottom="0dp"
+						android:layout_marginStart="10dp"
+						android:layout_marginEnd="10dp"
+						android:text="Teacher/3611288"
+						android:maxLength="50"
+						android:textSize="15sp"
+						android:textColor="@color/white"
+						android:hint="请输入发布的 Topic"
+						android:textColorHint="@color/white"
+						android:background="@drawable/shape_round4_stroke1_white" />
+				
+				</LinearLayout>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:layout_marginTop="36dp"
+				android:layout_marginBottom="36dp"
+				android:layout_height="wrap_content">
+				
+				<TextView
+					android:id="@+id/txtSub"
+					android:layout_width="0dp"
+					android:layout_height="42dp"
+					android:layout_weight="1"
+					android:textSize="15sp"
+					android:textColor="@color/mainColor"
+					android:text="订阅"
+					android:layout_marginStart="16dp"
+					android:layout_marginEnd="16dp"
+					android:gravity="center"
+					android:textStyle="bold"
+					android:background="@drawable/shape_round4_solid_white" />
+				
+				<TextView
+					android:id="@+id/txtPub"
+					android:layout_width="0dp"
+					android:layout_height="42dp"
+					android:layout_weight="1"
+					android:textSize="15sp"
+					android:textColor="@color/mainColor"
+					android:text="发布"
+					android:layout_marginStart="16dp"
+					android:layout_marginEnd="16dp"
+					android:gravity="center"
+					android:textStyle="bold"
+					android:background="@drawable/shape_round4_solid_white" />
+			
+			</LinearLayout>
+		
+		</LinearLayout>
+	
+	</androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
