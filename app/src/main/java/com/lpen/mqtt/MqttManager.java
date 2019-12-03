@@ -53,6 +53,7 @@ public class MqttManager {
     private Disposable mLoopDisposable;
 
     private OnMqttMessageListener onMessageListener;
+    private MqttStatusChangeListener mqttStatusChangeListener;
 
     private long subscribeTime = 0;
 
@@ -107,8 +108,7 @@ public class MqttManager {
 //            conOpt.setWill(subTopic, "will message".getBytes(Charset.forName("utf-8")), quality, false);
             client.connect(conOpt, null, iMqttActionListener);
         } catch (MqttException e) {
-            mStatus = STATUS_FAILURE;
-            mqttStatusChangeListener.onChange(mStatus);
+            changeStatus(STATUS_FAILURE);
             e.printStackTrace();
         }
 
@@ -134,8 +134,7 @@ public class MqttManager {
 
     private void restartServiceIfDestroy() {
         if (client == null) {
-            mStatus = STATUS_FAILURE;
-            mqttStatusChangeListener.onChange(mStatus);
+            changeStatus(STATUS_FAILURE);
             return;
         }
         boolean isConnect = client.isConnected();
@@ -144,8 +143,7 @@ public class MqttManager {
                 client.connect(conOpt, null, iMqttActionListener);
             } catch (MqttException e) {
                 e.printStackTrace();
-                mStatus = STATUS_FAILURE;
-                mqttStatusChangeListener.onChange(mStatus);
+                changeStatus(STATUS_FAILURE);
             }
         }
     }
@@ -210,22 +208,19 @@ public class MqttManager {
                     if (client != null) {
                         client.subscribe(subTopic, quality);
                         subscribeTime = System.currentTimeMillis();
-                        mStatus = STATUS_SUCCESS;
-                        mqttStatusChangeListener.onChange(mStatus);
+                        changeStatus(STATUS_SUCCESS);
                         publishEmptyMsg();  // 连接之后发一条空的消息，可删除消息队列里面的retain消息
                     }
                 } catch (MqttException e) {
                     e.printStackTrace();
-                    mStatus = STATUS_FAILURE;
-                    mqttStatusChangeListener.onChange(mStatus);
+                    changeStatus(STATUS_FAILURE);
                 }
             }
         }
 
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
-            mStatus = STATUS_FAILURE;
-            mqttStatusChangeListener.onChange(mStatus);
+            changeStatus(STATUS_FAILURE);
         }
     };
 
@@ -263,17 +258,17 @@ public class MqttManager {
 
         @Override
         public void connectionLost(Throwable arg0) {    // 连接中断
-            mStatus = STATUS_LOST;
-            mqttStatusChangeListener.onChange(mStatus);
+            changeStatus(STATUS_LOST);
         }
     };
 
-    private MqttStatusChangeListener mqttStatusChangeListener = new MqttStatusChangeListener() {
-        @Override
-        public void onChange(int status) {
-            loopConnectStatus();
+    private void changeStatus(int status) {
+        mStatus = status;
+        loopConnectStatus();
+        if (mqttStatusChangeListener != null) {
+            mqttStatusChangeListener.onChange(status);
         }
-    };
+    }
 
     private void publishEmptyMsg() {
         publish(clientId, new byte[]{});
@@ -303,8 +298,12 @@ public class MqttManager {
         return mStatus;
     }
 
-    public void addOnMeesageListener(OnMqttMessageListener listener) {
+    public void addOnMessageListener(OnMqttMessageListener listener) {
         this.onMessageListener = listener;
+    }
+
+    public void addMqttStatusChangeListener(MqttStatusChangeListener listener) {
+        mqttStatusChangeListener = listener;
     }
 
     public static void release() {

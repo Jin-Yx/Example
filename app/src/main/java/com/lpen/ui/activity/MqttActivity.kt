@@ -7,28 +7,21 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.lpen.R
-import com.lpen.mqtt.MqttManager
-import com.lpen.mqtt.NetBroadcast
-import com.lpen.mqtt.NetworkUtil
-import com.lpen.mqtt.OnMqttMessageListener
+import com.lpen.mqtt.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_mqtt.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 /**
- * TODO， 还需要加一个广播，监听网络连接状态改变，切换网络一般 MQTT 都需要重连
- *
  * @author android_P
  * @date 19-12-2
  */
-class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
+class MqttActivity : AppCompatActivity(), OnMqttMessageListener, MqttStatusChangeListener {
 
     private var mDisposable: Disposable? = null
-    private var mIntervalDisposable: Disposable? = null
 
     private var mNetBroad: NetBroadcast? = null
 
@@ -53,7 +46,8 @@ class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
             pubTopic()
         }
 
-        mqttManager.addOnMeesageListener(this)
+        mqttManager.addOnMessageListener(this)
+        mqttManager.addMqttStatusChangeListener(this)
 
         registerBroad()
     }
@@ -75,7 +69,7 @@ class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
     private fun checkParams(): Boolean {
         return when {
             editIP.text.isNullOrEmpty() -> {
-                Toast.makeText(this, "请输入 IP 地址", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "请输入服务器地址", Toast.LENGTH_SHORT).show()
                 false
             }
             editPort.text.isNullOrEmpty() -> {
@@ -147,27 +141,18 @@ class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
 
     private fun loopPublishMessage(pubTopic: String, pubMessage: String, time: Long, sum: Int) {
         mDisposable?.dispose()
-        mDisposable = Observable.create<Boolean> { emitter ->
-            var count = 0
-            mIntervalDisposable?.dispose()
-            mIntervalDisposable = Observable.interval(time, TimeUnit.SECONDS)
-                .subscribe {
-                    count ++
-                    val over = mqttManager.publish(pubTopic, pubMessage)
-                    Log.i("MqttActivity", "第 $count 次发布${if (over) "成功" else "失败"}")
-                    if (count >= sum) {
-                        mIntervalDisposable?.dispose()
-                        emitter.onNext(true)
-                    }
-                }
-        }.subscribeOn(Schedulers.io())
+        var count = 0
+        mDisposable = Observable.interval(time, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                mIntervalDisposable?.dispose()
-                mDisposable?.dispose()
-                txtPub.text = "发布"
+                count++
+                val over = mqttManager.publish(pubTopic, pubMessage)
+                Toast.makeText(this, "第 $count 次发布${if (over) "成功" else "失败"}", Toast.LENGTH_SHORT).show()
+                if (count >= sum) {
+                    mDisposable?.dispose()
+                    txtPub.text = "发布"
+                }
             }, {
-                mIntervalDisposable?.dispose()
                 mDisposable?.dispose()
                 txtPub.text = "发布"
             })
@@ -181,6 +166,14 @@ class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
         Log.i("MqttActivity", "发送的消息： $message")
     }
 
+    override fun onChange(status: Int) {
+        if (status == MqttManager.STATUS_SUCCESS) {
+            txtSub.text = "已订阅"
+        } else {
+            txtSub.text = "订阅"
+        }
+    }
+
     override fun onDestroy() {
         try {
             mNetBroad?.apply {
@@ -191,7 +184,6 @@ class MqttActivity : AppCompatActivity(), OnMqttMessageListener {
             e.printStackTrace()
         }
         mDisposable?.dispose()
-        mIntervalDisposable?.dispose()
         MqttManager.release()
         super.onDestroy()
     }
